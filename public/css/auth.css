@@ -1,0 +1,115 @@
+form {
+  display: flex;
+  flex-direction: column;
+  width: 480px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.10);
+  box-sizing: border-box;
+  padding: var(--size-2) var(--size-6);
+  border-radius: 4px;
+  border-top: 1px solid var(--blue);
+}
+header{
+  display:flex;
+  align-items: center;
+  position: absolute;
+  padding: 0;
+  margin: 0;
+  top:var(--size-3);
+  left:var(--size-3);
+}
+header > img {
+  height: 50px;
+}
+h2{
+  font-size:var(--size-3);
+  font-weight: 300;
+  letter-spacing: 2px;
+  margin-left: 8px;
+}
+
+h1{
+  font-size: var(--size-3);
+  text-align: center;
+  font-weight: 200;
+  margin-bottom: 32px;
+  margin-top:var(--size-1);
+}
+
+label {
+  font-size: var(--size-2);
+  margin-top: var(--size-2);
+  margin-bottom: var(--size-1);
+  font-weight: 200;
+}
+input {
+  height: var(--size-6);
+  font-size: var(--size-2);
+  box-sizing: border-box;
+  padding: 8px;
+  border: 0;
+  background-color: var(--white);
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.15);
+  outline: 0;
+}
+input.error {
+  border-left: 2px solid var(--red);
+}
+
+small {
+  color: var(--red);
+  font-size: 14px;
+  margin-top: 8px;
+  font-weight: 300;
+}
+
+input:focus {
+  border-left: 2px solid var(--blue);
+}
+input::placeholder {
+  opacity: 0.5;
+}
+
+input[type='submit'] {
+  margin-top: var(--size-2);
+  margin-bottom:56px;
+  background-color: var(--blue);
+  color: white;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+input[type='submit']:hover {
+  background: var(--lblue);
+  color: var(--blue);
+  border-bottom: 1px solid var(--blue);
+}
+
+a#recover {
+  text-decoration: none;
+  margin-top: var(--size-1);
+  font-size: 14px;
+  align-self: flex-end;
+  font-weight: 300;
+}
+a#link {
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 200;
+  position: absolute;
+  bottom: 20px;
+  align-self: center;
+  color: black;
+}
+
+a#link > span {
+  color: var(--blue);
+  font-weight: 400;
+  margin-left: 5px;
+  letter-spacing: 1px;
+}
+
