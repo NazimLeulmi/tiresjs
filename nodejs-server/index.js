@@ -1,6 +1,4 @@
 const express = require("express");
-const path = require('path');
-const hbs = require('express-handlebars');
 const mongoose = require('mongoose');
 const session = require('express-session');
 
@@ -40,18 +38,8 @@ app.use(express.static(__dirname + '/public'));
 
 // view engine setup
 
-const handlebars = hbs.create({
-  extname: "hbs", defaultLayout: 'main'
-  , helpers: {
-    equals: function (arg1, arg2, options) {
-      return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
-    }
-  }
-})
-app.engine('hbs', handlebars.engine);
-app.set('view engine', 'hbs');
 
-app.use(require("./routes/home"));
+
 app.use(require("./routes/signin"));
 app.use(require("./routes/signup"));
 app.use(require("./routes/activate"));
@@ -59,7 +47,7 @@ app.use(require("./routes/tires"));
 
 
 app.listen(2323, () => {
-  console.log("Express~Tires on port:2323");
+  console.log("LEUTIRES server running on port:2323");
 })
 
 

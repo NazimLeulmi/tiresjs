@@ -8,10 +8,6 @@ let isEmpty = require("validator").isEmpty;
 let UserModel = require("../models.js").UserModel;
 let router = express.Router();
 
-/* GET home page. */
-router.get('/signin', function (req, res) {
-  res.render('signin', { stylesheet: 'auth.css' });
-});
 
 
 
@@ -46,32 +42,17 @@ router.post("/signin", validation, async (req, res) => {
     if (!isValid) {
       return res.render('signin', {
         errors: errors, email: req.body.email,
-        stylesheet: "auth.css", password: req.body.password
+        stylesheet: "forms.css", password: req.body.password
       });
     }
     let user = await UserModel.findOne({ email: req.body.email });
-    if (!user) {
-      return res.render('signin', {
-        errors: { password: "Invalid email or password" },
-        stylesheet: "auth.css", email: req.body.email, password: req.body.password
-      });
-    }
+    if (!user) return res.json({ errors: { password: "Invalid email or password" } })
     const isCorrect = await compare(req.body.password, user.pass);
-    if (!isCorrect) {
-      return res.render('signin', {
-        errors: { password: "Invalid email or password" }, email: req.body.email,
-        stylesheet: "auth.css", password: req.body.password
-      });
-    }
-    if (user.active === false) {
-      return res.render('signin', {
-        errors: { password: "Account has to be activated" },
-        stylesheet: "auth.css", email: req.body.email, password: req.body.password
-      });
-    }
+    if (!isCorrect) return res.json({ errors: { password: "Invalid email or password" } })
+    if (!user.active) return res.json({ errors: { password: "Your account is not active" } })
     req.session.userId = user._id;
     req.session.userEmail = user.email;
-    return res.redirect('/tires');
+    return res.json({ success: true })
   } catch (err) {
     throw err;
   }

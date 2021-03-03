@@ -33,7 +33,7 @@ router.get("/activate/:token", validation, async (req, res) => {
       { token: null, active: true }
     );
     if (!user) return res.json({ error: "The token is invalid" });
-    return res.render('activated', { email: user.email, stylesheet: "activate.css" });
+    return res.json({ activated: true, email: user.email })
   } catch (err) {
     console.log(err);
   }

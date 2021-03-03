@@ -10,12 +10,6 @@ let isEmpty = require("validator").isEmpty;
 let UserModel = require("../models").UserModel;
 let router = express.Router();
 
-/* GET home page. */
-router.get('/signup', function (req, res) {
-  res.render('signup', { stylesheet: 'auth.css' });
-});
-
-
 
 function validation(req, res, next) {
   let { email, password, passwordc } = req.body;
@@ -50,16 +44,9 @@ function validation(req, res, next) {
 router.post("/signup", validation, async (req, res) => {
   try {
     let { isValid, errors } = req.validation;
-    if (!isValid) return res.render('signup', {
-      errors, stylesheet: "auth.css", ...req.body
-    })
+    if (!isValid) return res.json({ errors: errors });
     let user = await UserModel.findOne({ email: req.body.email });
-    if (user) {
-      return res.render('signup', {
-        errors: { email: "The email address is taken" },
-        ...req.body, stylesheet: "auth.css"
-      });
-    }
+    if (user) return res.json({ errors: { email: "The email address is taken" } });
     let hashed = await hash(req.body.password, 10);
     let buffer = await randomBytes(48);
     let token = buffer.toString("hex");
@@ -69,11 +56,10 @@ router.post("/signup", validation, async (req, res) => {
       token: token,
     });
     let userSaved = await user.save();
-    console.log(userSaved);
     let url = "http://localhost:2323/activate/" + token;
-    let mailres = await sendMail(req.body.email, url);
+    let mailres = await sendMail(url);
     req.session.activate = user.email;
-    return res.redirect('/activate');
+    return res.json({ success: true });
   } catch (err) {
     throw err;
   }
