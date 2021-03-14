@@ -1,14 +1,16 @@
 const express = require("express");
 const mongoose = require('mongoose');
 const session = require('express-session');
+const compression = require('compression');
+
 
 
 const app = express();
-
+app.use(compression());
 
 
 // Mongo Database  Connection~
-mongoose.connect("mongodb://localhost/expresstires", {
+mongoose.connect("mongodb://localhost/leutires", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -33,7 +35,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // PUBLIC STATIC FOLDER
-app.use(express.static(__dirname + '/public'));
+// app.use(express.static(__dirname + '/public'));
 
 
 // view engine setup

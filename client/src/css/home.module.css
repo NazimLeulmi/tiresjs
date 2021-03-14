@@ -1,4 +1,4 @@
-main{
+.grid{
   display:grid;
   grid-template-columns: 1fr 1fr;
   background-color:var(--white);
@@ -6,7 +6,7 @@ main{
   position: relative;
 }
 
-section,aside{
+.intro,.side{
   position: relative;
   display:flex;
   flex-direction: column;
@@ -15,7 +15,7 @@ section,aside{
 }
 
 
-header{
+.logo{
   display:flex;
   align-items: center;
   width:80%;
@@ -24,14 +24,14 @@ header{
   margin: 0;
   top:var(--size-3);
 }
-h2{
+.brand{
   font-size:var(--size-3);
   font-weight: 300;
   letter-spacing: 2px;
   margin-left: 8px;
 }
 
-h1{
+.header{
   font-size:var(--size-5);
   font-weight: 300;
   width:80%;
@@ -40,19 +40,17 @@ h1{
   margin-bottom: 0;
 }
 
-
-
-p{
+.text{
   width:80%;
   font-size:var(--size-3);
   font-weight:200;
   line-height: var(--size-4);
   margin:0;
-  margin-bottom:var(--size-2);
+  margin-bottom:var(--size-3);
   margin-top:var(--size-1)
 }
 
-a{
+.btn{
   align-self:flex-start;
   margin-left:10% !important;
   letter-spacing: 2px;

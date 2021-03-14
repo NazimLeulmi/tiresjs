@@ -51,7 +51,8 @@ const theme = createMuiTheme({
 const Home = React.lazy(() => import('./routes/home'));
 const SignIn = React.lazy(() => import('./routes/signin'));
 const SignUp = React.lazy(() => import('./routes/signup'));
-const TiresList = React.lazy(() => import('./routes/tires'));
+const Activate = React.lazy(() => import('./routes/activate'));
+const Activated = React.lazy(() => import('./routes/activated'));
 const TiresList = React.lazy(() => import('./routes/tires'));
 
 ReactDOM.render(
@@ -68,6 +69,15 @@ ReactDOM.render(
           </Route>
           <Route exact path="/signup" >
             <SignUp />
+          </Route>
+          <Route exact path="/activate" >
+            <Activate />
+          </Route>
+          <Route exact path="/activate/:token" >
+            <Activated />
+          </Route>
+          <Route exact path="/tires" >
+            <TiresList />
           </Route>
         </React.Suspense>
       </Router>

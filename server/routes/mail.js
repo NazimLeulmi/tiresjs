@@ -9,10 +9,9 @@ async function main(link) {
       secure: true,
       auth: {
         user: "naz@nazimleulmi.com",
-        pass: "qX5noeSFskZPz9",
+        pass: "CP3exv8AR32cyn",
       },
     });
-
     // send mail with defined transport object
     transporter.sendMail({
       from: '"Tirejs 👻" <naz@nazimleulmi.com>',

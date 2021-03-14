@@ -12,7 +12,7 @@ let router = express.Router();
 
 
 function validation(req, res, next) {
-  let { email, password, passwordc } = req.body;
+  let { email, password } = req.body;
   let errors = {};
   // 1) Email Validation
   if (email === undefined || email === null || isEmpty(email)) {
@@ -39,12 +39,7 @@ function validation(req, res, next) {
 router.post("/signin", validation, async (req, res) => {
   try {
     let { isValid, errors } = req.validation;
-    if (!isValid) {
-      return res.render('signin', {
-        errors: errors, email: req.body.email,
-        stylesheet: "forms.css", password: req.body.password
-      });
-    }
+    if (!isValid) res.json({errors})
     let user = await UserModel.findOne({ email: req.body.email });
     if (!user) return res.json({ errors: { password: "Invalid email or password" } })
     const isCorrect = await compare(req.body.password, user.pass);

@@ -56,7 +56,7 @@ router.post("/signup", validation, async (req, res) => {
       token: token,
     });
     let userSaved = await user.save();
-    let url = "http://localhost:2323/activate/" + token;
+    let url = "http://localhost:3000/activate/" + token;
     let mailres = await sendMail(url);
     req.session.activate = user.email;
     return res.json({ success: true });
