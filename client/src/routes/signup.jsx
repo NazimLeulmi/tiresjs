@@ -1,6 +1,6 @@
 import React from 'react';
 import s from "../css/auth.module.css";
-import { Button, Paper, TextField, Typography } from '@material-ui/core';
+import { Button, Paper, TextField } from '@material-ui/core';
 import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import Car from "../assets/car.svg";

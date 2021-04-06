@@ -11,9 +11,9 @@ export default function Bar() {
   return (
     <AppBar position="static" color="transparent">
       <Toolbar>
-        <img src={Tires} height="40" className={s.logo} />
+        <img src={Tires} height="40" className={s.logo} alt="tires" />
         <Typography variant="h6" className={s.header}>LEUTIRES</Typography>
-        <img src={Car} height="65" className={s.car} />
+        <img src={Car} height="65" className={s.car} alt="car" />
       </Toolbar>
     </AppBar>
   );

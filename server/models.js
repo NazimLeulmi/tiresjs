@@ -11,17 +11,17 @@ let User = new mongoose.Schema({
 // Tire Metric Sizing Schema
 let Tire = new mongoose.Schema({
   width: { type: Number, min: 150, max: 350, required: true }, // mm
-  aspect_ratio: { type: Number, min: 30, max: 100, required: true }, // percentage
-  wheel_diameter: { type: Number, min: 13, max: 30, required: true }, // inches
-  letter: { type: String, minlength: 1, maxlength: 2, default: "P" }, // 'P','LT','T','ST'
+  percentage: { type: Number, min: 30, max: 99, required: true }, // percentage
+  diameter: { type: Number, min: 13, max: 30, required: true }, // inches
+  quantity: { type: Number, min: 1, max: 5000, required: true }, // inches
+  brand: { type: String, minlength: 3, maxlength: 25 },
+  type: { type: String, minlength: 1, maxlength: 2, default: "P" }, // 'P','LT','T','ST'
   condition: {
-    type: String, minlength: 3, maxlength: 4,
+    type: String, minlength: 3, maxlength: 6,
     default: "USED", required: true
   },
-  quantity: { type: Number, min: 1, max: 5000, required: true }, // inches
   group_index: { type: Number, min: 1, max: 5000, required: true }, // inches
-  group: { type: String, minlength: 5, maxlength: 20 },
-  brand: { type: String, minlength: 3, maxlength: 25 },
+  group: { type: String, minlength: 5, maxlength: 30 },
 }, { timestamps: true })
 
 
@@ -29,5 +29,6 @@ let Tire = new mongoose.Schema({
 
 
 let UserModel = mongoose.model('User', User);
+let TireModel = mongoose.model('Tire', Tire);
 
-module.exports = { UserModel };
+module.exports = { UserModel,TireModel };

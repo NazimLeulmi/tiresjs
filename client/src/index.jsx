@@ -2,7 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
-import { CssBaseline, createMuiTheme, ThemeProvider } from '@material-ui/core/';
+import { CssBaseline, ThemeProvider } from '@material-ui/core/';
+import { unstable_createMuiStrictModeTheme as createMuiTheme } from '@material-ui/core';
+
 
 const theme = createMuiTheme({
   palette: {
@@ -53,9 +55,11 @@ const SignIn = React.lazy(() => import('./routes/signin'));
 const SignUp = React.lazy(() => import('./routes/signup'));
 const Activate = React.lazy(() => import('./routes/activate'));
 const Activated = React.lazy(() => import('./routes/activated'));
+const TiresForm = React.lazy(() => import('./routes/tiresform'));
 const TiresList = React.lazy(() => import('./routes/tires'));
 
 ReactDOM.render(
+
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -75,6 +79,9 @@ ReactDOM.render(
           </Route>
           <Route exact path="/activate/:token" >
             <Activated />
+          </Route>
+          <Route exact path="/tiresform" >
+            <TiresForm />
           </Route>
           <Route exact path="/tires" >
             <TiresList />

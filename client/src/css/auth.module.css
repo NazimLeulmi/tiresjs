@@ -31,6 +31,13 @@
   z-index: 1;
 }
 
+.grid {
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  width:100%;
+  grid-column-gap: 16px;
+}
+
 .img{
   margin-bottom:24px
 }
@@ -38,4 +45,12 @@
 .blue {
   color:var(--blue);
   margin-left:var(--size-1);
+}
+
+.brand{
+  grid-column: 2/4;
+}
+
+.condition{
+  grid-column: 1/3;
 }
