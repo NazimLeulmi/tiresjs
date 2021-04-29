@@ -9,7 +9,7 @@ import s from "../css/tires.module.css";
 
 export default function Bar() {
   return (
-    <AppBar position="static" color="transparent">
+    <AppBar position="static" color="transparent" className={s.bar}>
       <Toolbar>
         <img src={Tires} height="40" className={s.logo} alt="tires" />
         <Typography variant="h6" className={s.header}>LEUTIRES</Typography>

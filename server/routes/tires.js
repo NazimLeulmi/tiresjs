@@ -51,9 +51,9 @@ router.post("/tires", validation, async (req, res) => {
   const { width, percentage, diameter,
     type, condition, quantity, brand } = req.body;
   try {
-    // if (!req.session.userId) return console.log("RESTRI")
-    // let user = await UserModel.findById(req.session.userId);
-    // if (!user) return res.json({ error: "RESTRICTED ROUTE" })
+    if (!req.session.userId) return console.log("RESTRICTED ROUTE")
+    let user = await UserModel.findById(req.session.userId);
+    if (!user) return res.json({ error: "RESTRICTED ROUTE" })
     // Add Single tire
     if (parseInt(quantity) === 1) {
       let NewTire = new TireModel({
@@ -80,6 +80,17 @@ router.post("/tires", validation, async (req, res) => {
     console.log(err);
   }
 });
+
+router.get("/tires", async (req, res) => {
+  try {
+    console.log("getting tires");
+    if (!req.session.userId) return console.log("RESTRICTED ROUTE")
+    let user = await UserModel.findById(req.session.userId);
+    if (!user) return res.json({ error: "RESTRICTED ROUTE" })
+    const tires = await TireModel.find();
+    return res.json(tires);
+  } catch (err) { console.log(err) }
+})
 
 module.exports = router;
 
